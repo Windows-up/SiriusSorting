@@ -5,6 +5,7 @@ queries = open("queries.txt", "r").read().split("\n")
 
 
 def main():
+
     for i in range(0, len(queries)):
 
         # Find original word

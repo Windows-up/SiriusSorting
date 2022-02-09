@@ -33,7 +33,7 @@ def check2(a,b):
         for i in range(len(a)):
             c = a
             c[i] = ''
-            if damerau_levenshtein_distance(c,b) < dist:
+            if damerau_levenshtein_distanc e(c,b) < dist:
                 return f"{a} {dist} {c} {b}"
 
 
