@@ -4,12 +4,12 @@ from twoWordTesting import check2
 dictionary = open("dict.txt", "r").read().split("\n")
 queries = open("queries.txt", "r").read().split("\n")
 
-
+f = open("out.txt", "w+")
 
 def main():
 
     for i in range(0, len(queries)):
-        file = open("out.txt", "w")
+
 
         # Find original word
         word = queries[i]
@@ -30,20 +30,23 @@ def main():
             minimum = "3+"
 
         if minimum == 0 :
+            f.write(f"{word} 0 {original} \n")
             print(f"{word} 0 {original}")
-            file.write(f"{word} 0 {original} \n")
+
 
         elif minimum == 2:
+            f.write(check2(word, original) + "\n")
             print(check2(word,original))
-            file.write(check2(word,original) + "\n")
+
 
         else:
             result = f"{word} {minimum} {original} \n"
+            f.write(result)
             print(result)
-            file.write(result)
+
 
         print(i)
-        file.close()
+        f.close()
 
 
 if __name__ == "__main__":

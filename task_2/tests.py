@@ -1,3 +1,7 @@
+from numba import njit
+
+
+@njit(fastmath=True)
 def damerau_levenshtein_distance(s1, s2):
     d = {}
     lenstr1 = len(s1)
@@ -23,20 +27,26 @@ def damerau_levenshtein_distance(s1, s2):
 
     return d[lenstr1 - 1, lenstr2 - 1]
 
-# def check2(a,b):
-#     dist = int(damerau_levenshtein_distance(a,b))
-#
-#
-#     #Сравнение масивов
-#     #введена лишняя буква спереди или сзади
-#     if not len(a) == len(b):
-#         for i in range(len(a)):
-#             c = a
-#             c[i] = ''
-#             if damerau_levenshtein_distance(c,b) < dist:
-#                 return f"{a} {dist} {c} {b}"
-#
-#
-#         return 0
-#
-#
+
+output = ""
+counter = 0
+
+dictionary = open("universities.txt", "r").read().split("\n")
+queries = open("queries.txt", "r").read().split("\n")
+
+for i in queries:
+    counter += 1
+    mininum = 999999
+    original = "ddd"
+    for j in dictionary:
+
+        if j[0].upper() == i[0].upper() or j[1].upper() == i[1].upper():
+            dist = damerau_levenshtein_distance(i, j)
+            if dist < mininum:
+                original = j
+                mininum = dist
+    print([i, original, counter])
+    output += f"{original}\n"
+
+with open("out.txt", "w") as file:
+    file.write(output)

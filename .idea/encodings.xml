@@ -2,7 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/dict.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/file.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/out.txt" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/queries.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/sortDict.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/task_2/out.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/task_2/out.txt.bak" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/task_2/queries.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/task_2/universities.txt" charset="windows-1251" />
   </component>
 </project>
