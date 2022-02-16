@@ -1,4 +1,5 @@
 from numba import njit
+from fuzzywuzzy import fuzz
 
 @njit(fastmath=True)
 def damerau_levenshtein_distance(s1, s2):
@@ -35,7 +36,7 @@ queries = open("queries.txt", "r").read().split("\n")
 
 for i in queries:
     counter += 1
-    mininum = 999999
+    mininum = -50
     original = "ddd"
     for j in dictionary:
         fix_i = i.lower()
@@ -44,11 +45,11 @@ for i in queries:
         split_j = fix_j.split()
 
 
-        if split_j[0][1] == split_i[0][1]:
 
-            dist = damerau_levenshtein_distance(fix_i, fix_j)
 
-            if dist < mininum:
+        dist = fuzz.ratio(fix_i, fix_j)
+
+        if dist > mininum:
                 original = split_j[0]
                 mininum = dist
     print([i, original,mininum, counter])
