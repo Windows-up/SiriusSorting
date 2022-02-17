@@ -1,6 +1,6 @@
 import time
 from fuzzywuzzy import fuzz
-from trash.lib import damerau_levenshtein_distance
+from lib import damerau_levenshtein_distance
 
 counter = 0
 
