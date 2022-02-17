@@ -1,3 +1,7 @@
+from numba import njit
+from fuzzywuzzy import fuzz
+
+@njit(fastmath=True)
 def damerau_levenshtein_distance(s1, s2):
     d = {}
     lenstr1 = len(s1)
@@ -23,20 +27,34 @@ def damerau_levenshtein_distance(s1, s2):
 
     return d[lenstr1 - 1, lenstr2 - 1]
 
-def check2(a,b):
-    dist = int(damerau_levenshtein_distance(a,b))
+
+output = ""
+counter = 0
+
+dictionary = open("universities.txt", "r").read().split("\n")
+queries = open("queries.txt", "r").read().split("\n")
+
+for i in queries:
+    counter += 1
+    mininum = -50
+    original = ""
+    for j in dictionary:
+        fix_i = i.lower()
+        fix_j = j.lower()
+        split_i = fix_i.split()
+        split_j = fix_j.split()
 
 
-    #Сравнение масивов
-    #введена лишняя буква спереди или сзади
-    if not len(a) == len(b):
-        for i in range(len(a)):
-            c = a
-            c[i] = ''
-            if damerau_levenshtein_distance(c,b) < dist:
-                return f"{a} {dist} {c} {b}"
+
+        dist = fuzz.ratio(fix_i, fix_j)
+
+        if dist > mininum:
+                original = j
+                mininum = dist
 
 
-        return 0
+    print([i,original,mininum, counter])
+    output += f"{original}\n"
 
-
+with open("outUniversities.txt", "w") as file:
+    file.write(output)
