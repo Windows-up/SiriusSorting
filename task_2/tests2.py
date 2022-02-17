@@ -37,7 +37,7 @@ queries = open("queries.txt", "r").read().split("\n")
 for i in queries:
     counter += 1
     mininum = -50
-    original = []
+    original = ""
     for j in dictionary:
         fix_i = i.lower()
         fix_j = j.lower()
@@ -45,25 +45,16 @@ for i in queries:
         split_j = fix_j.split()
 
 
-        if split_j[0][0] == split_i[0][0]:
 
-            dist = fuzz.ratio(fix_i, fix_j)
+        dist = fuzz.ratio(fix_i, fix_j)
 
-            if dist > mininum:
-                original.append(j)
+        if dist > mininum:
+                original = j
                 mininum = dist
 
-    mininum = 999999
-    good_word = ""
-    for b in original:
-        lower_b = b.lower()
-        dist = damerau_levenshtein_distance(fix_i, lower_b)
 
-        if dist < mininum:
-            good_word = b
-            mininum = dist
-    print([i, good_word,mininum, counter])
-    output += f"{good_word}\n"
+    print([i,original,mininum, counter])
+    output += f"{original}\n"
 
-with open("out.txt", "w") as file:
+with open("outUniversities.txt", "w") as file:
     file.write(output)
