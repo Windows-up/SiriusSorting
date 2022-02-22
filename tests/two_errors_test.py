@@ -3,7 +3,7 @@ import copy
 import time
 
 
-def check2(word, dict):
+def check2(word : str, dict : str):
     #    ALFABET = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
     default_dist = damerau_levenshtein_distance(word, dict)
 
@@ -80,6 +80,7 @@ def check2(word, dict):
                         min_dist = tmp_dist
 
         word_dict = word_dict[:(diff)*-1]
+
         # Добавление букв
         for k in dict:
             for i in range(0, len(word)):
@@ -94,8 +95,7 @@ def check2(word, dict):
                     min_dist = tmp_dist
 
     if min_dist <= default_dist:
-        best_word = best_word[:(diff) * -1]
-        return f"{best_word} 2 {best_temp} {best_dict}"
+        return f"{word} 2 {best_temp} {best_dict}"
 
     # Если ничего не помогло
     return None
