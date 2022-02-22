@@ -55,7 +55,7 @@ for word in queries:
         elif word_dist >=3:
             output += f"{word} 3+\n"
             print(f"{counter}) {word} 3+\n")
-        print(time.time()-start_time)
+#        print(time.time()-start_time)
 
 
 with open("out2.txt", "w") as file:
